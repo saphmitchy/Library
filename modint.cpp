@@ -44,56 +44,56 @@ struct modint {
         p = 998244353;
         num = x % p;
     }
-	modint inv()const{return rev(num, p);}
-	modint operator-() const{return modint(p-num);}
-	modint& operator+=(const modint &other){
-		num = (num + other.num) % p;
-		return *this;
-	}
-	modint& operator-=(const modint &other){
-		num = (num - other.num + p) % p;
-		return *this;
-	}
-	modint& operator*=(const modint &other){
-		num = (num * other.num) % p;
-		return *this;
-	}
-	modint& operator/=(const modint &other){
-		(*this) *= other.inv();
-		return *this;
-	}
-	modint& operator+=(const long long &other){
-		num = (num + other) % p;
-		return *this;
-	}
-	modint& operator-=(const long long &other){
-		num = (num - other + p) % p;
-		return *this;
-	}
-	modint& operator*=(const long long &other){
-		num = (num * other) % p;
-		return *this;
-	}
-	modint& operator/=(const long long &other){
-		(*this) *= rev(other, p);
-		return *this;
-	}
-	modint& operator++(){return *this += 1;}
-	modint& operator--(){return *this -= 1;}
-	modint& operator=(const long long &other){return (*this) = modint(other);}
-	modint operator+(const modint &other) const{return modint(*this) += other;}
-	modint operator-(const modint &other) const{return modint(*this) -= other;}
-	modint operator*(const modint &other) const{return modint(*this) *= other;}
-	modint operator/(const modint &other) const{return modint(*this) /= other;}
-	modint operator+(const long long &other) const{return modint(*this) += other;}
-	modint operator-(const long long &other) const{return modint(*this) -= other;}
-	modint operator*(const long long &other) const{return modint(*this) *= other;}
-	modint operator/(const long long &other) const{return modint(*this) /= other;}
-	bool operator==(const modint &other) const{return num == other.num;}
+    modint inv()const{return rev(num, p);}
+    modint operator-() const{return modint(p-num);}
+    modint& operator+=(const modint &other){
+        num = (num + other.num) % p;
+        return *this;
+    }
+    modint& operator-=(const modint &other){
+        num = (num - other.num + p) % p;
+        return *this;
+    }
+    modint& operator*=(const modint &other){
+        num = (num * other.num) % p;
+        return *this;
+    }
+    modint& operator/=(const modint &other){
+        (*this) *= other.inv();
+        return *this;
+    }
+    modint& operator+=(const long long &other){
+        num = (num + other) % p;
+        return *this;
+    }
+    modint& operator-=(const long long &other){
+        num = (num - other + p) % p;
+        return *this;
+    }
+    modint& operator*=(const long long &other){
+        num = (num * other) % p;
+        return *this;
+    }
+    modint& operator/=(const long long &other){
+        (*this) *= rev(other, p);
+        return *this;
+    }
+    modint& operator++(){return *this += 1;}
+    modint& operator--(){return *this -= 1;}
+    modint& operator=(const long long &other){return (*this) = modint(other);}
+    modint operator+(const modint &other) const{return modint(*this) += other;}
+    modint operator-(const modint &other) const{return modint(*this) -= other;}
+    modint operator*(const modint &other) const{return modint(*this) *= other;}
+    modint operator/(const modint &other) const{return modint(*this) /= other;}
+    modint operator+(const long long &other) const{return modint(*this) += other;}
+    modint operator-(const long long &other) const{return modint(*this) -= other;}
+    modint operator*(const long long &other) const{return modint(*this) *= other;}
+    modint operator/(const long long &other) const{return modint(*this) /= other;}
+    bool operator==(const modint &other) const{return num == other.num;}
 };
 std::istream& operator>>(std::istream &is, const modint x) {
-	std::cin >> x.num;
-	return is;
+    std::cin >> x.num;
+    return is;
 }
 std::ostream& operator<<(std::ostream &os, const modint &x){
     std::cout << x.num;
