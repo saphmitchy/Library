@@ -1,6 +1,6 @@
 /*
 verlified by
-AIZU ONLINE JUDGE DSL-2-A https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
+AIZU ONLINE JUDGE DSL-2-A https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
 submission: https://onlinejudge.u-aizu.ac.jp/status/users/sapphire15/submissions/1/DSL_2_A/judge/4956449/C++17
 */
 
