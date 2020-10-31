@@ -12,7 +12,7 @@ submission: https://onlinejudge.u-aizu.ac.jp/status/users/sapphire15/submissions
 
 /*nod: 値 monoid: モノイドの値 flag: モノイドが非伝播か t0: nodの単位元 so: モノイドの単位元 operation: nodのmerge merge: monoidのmerge calc: モノイドの作用*/
 template<typename T, typename S>
-struct LazySegTree{
+struct LazySegTree {
     int size;
     std::vector<T> nod;
     std::vector<S> monoid;
@@ -22,7 +22,10 @@ struct LazySegTree{
     std::function<T(T,T)> operation;
     std::function<S(S,S)> merge;
     std::function<T(T,S,int)> calc;
-    LazySegTree(int n, T _t0, S _s0, std::function<T(T,T)> _operation, std::function<S(S,S)> _merge, std::function<T(T,S,int)> _calc){
+    LazySegTree(int n, T _t0, S _s0, 
+                std::function<T(T,T)> _operation,
+                std::function<S(S,S)> _merge,
+                std::function<T(T,S,int)> _calc) {
         t0 = _t0;
         s0 = _s0;
         operation = _operation;
@@ -34,19 +37,19 @@ struct LazySegTree{
         monoid = std::vector<S> (size*2-1, s0);
         flag = std::vector<bool> (size*2-1);
     }
-    void update(int a, int b, S x){ // operation(da[a, b), x)
+    void update(int a, int b, S x) { // operation(da[a, b), x)
         assert(0 <= a && a < size);
         assert(0 <= b && b <= size);
         assert(a <= b);
         update_query(a,b,0,0,size,x);
     }
-    T sum(int a, int b){ // merge[a, b)
+    T sum(int a, int b) { // merge[a, b)
         assert(0 <= a && a < size);
         assert(0 <= b && b <= size);
         assert(a <= b);
         return sum_query(a,b,0,0,size);
     }
-   void deb(){
+   void deb() {
         for(int i=0;i<size*2-1;i++){
             if(i==size*2-2) std::cout << nod[i] <<std:: endl;
             else std::cout << nod[i] << ' ';
@@ -58,7 +61,7 @@ struct LazySegTree{
         return;
     }
     private:
-    void disassembly(int k, int l, int r){
+    void disassembly(int k, int l, int r) {
         if(r-l>1){
             monoid[k*2+1] = merge(monoid[k*2+1], monoid[k]);
             monoid[k*2+2] = merge(monoid[k*2+2], monoid[k]);
@@ -81,7 +84,8 @@ struct LazySegTree{
         }
         else{
             if(flag[k]) disassembly(k,l,r);
-            nod[k] = operation(update_query(a,b,k*2+1,l,(l+r)/2,x), update_query(a,b,k*2+2,(l+r)/2,r,x));
+            nod[k] = operation(update_query(a,b,k*2+1,l,(l+r)/2,x),
+                               update_query(a,b,k*2+2,(l+r)/2,r,x));
             return nod[k];
         }
     }
@@ -94,14 +98,18 @@ struct LazySegTree{
             else return nod[k];
         }
         if(flag[k]) disassembly(k, l, r);
-        return operation(sum_query(a,b,k*2+1,l,(l+r)/2),sum_query(a,b,k*2+2,(l+r)/2,r));
+        return operation(sum_query(a,b,k*2+1,l,(l+r)/2),
+                         sum_query(a,b,k*2+2,(l+r)/2,r));
     }
 };
 
 int main(){
     int n,q; std::cin >> n >> q;
     std::vector<long long> ans(0);
-    LazySegTree<long long, long long> lst(n,0,0,[](long long a, long long b){return a+b;}, [](long long a, long long b){return a+b;},[](long long a, long long b, long long c){return (long long)a+b*c;});
+    LazySegTree<long long, long long> lst(n,0,0,
+                                          [](long long a, long long b){return a+b;},
+                                          [](long long a, long long b){return a+b;},
+                                          [](long long a, long long b, long long c){return (long long)a+b*c;});
     for(int i= 0;i<q;i++){
         int w; std::cin >> w;
         if(w == 0){
