@@ -31,7 +31,7 @@ template<typename T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 template<typename T>
-inline bool chmax(T &a, T b) {
+inline bool chmax(T &a, const T b) {
     if (a < b) {
         a = b;
         return true;
@@ -39,7 +39,7 @@ inline bool chmax(T &a, T b) {
     return false;
 }
 template<typename T>
-inline bool chmin(T &a, T b) {
+inline bool chmin(T &a, const T b) {
     if (a > b) {
         a = b;
         return true;
@@ -47,18 +47,18 @@ inline bool chmin(T &a, T b) {
     return false;
 }
 
-# ifndef ONLINE_JUDGE
+# ifdef LOCAL_DEBUG
 template<typename T>
-void vdeb(std::vector<T> &bb) {
-    for (int i = 0;i < bb.size();i++) {
+void vdeb(const std::vector<T> &bb) {
+    for (unsigned int i = 0;i < bb.size();i++) {
         if (i == bb.size() - 1) std::cout << bb[i];
         else std::cout << bb[i] << ' ';
     }
     std::cout << '\n';
 }
 template<typename T>
-void vdeb(std::vector<std::vector<T>> &bb) {
-    for (int i = 0;i < bb.size();i++) {
+void vdeb(const std::vector<std::vector<T>> &bb) {
+    for (unsigned int i = 0;i < bb.size();i++) {
         std::cout << i << ' ';
         vdeb(bb[i]);
     }
