@@ -9,7 +9,7 @@ class UnionFind {
 
     public:
     UnionFind() :_n(0), _size(0){}
-    UnionFind(int n) : _n(n), _size(0), par_size(n, -1) {}
+    UnionFind(int n) : _n(n), _size(n), par_size(n, -1) {}
 
     int unite(int a, int b) {
         assert(0 <= a && a < _n);
